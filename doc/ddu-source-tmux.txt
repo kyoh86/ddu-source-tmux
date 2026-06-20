@@ -1,0 +1,131 @@
+                                                         *ddu-source-tmux.txt*
+tmux source for ddu.vim
+
+Author: kyoh86 <me@kyoh86.dev>
+License: MIT License
+URL: https://github.com/kyoh86/ddu-source-tmux
+
+
+==============================================================================
+                                                    *ddu-source-tmux-contents*
+Contents ~
+
+Introduction                        |ddu-source-tmux-introdution|
+Install                             |ddu-source-tmux-install|
+Examples                            |ddu-source-tmux-examples|
+Sources                             |ddu-source-tmux-sources|
+Actions of tmux_repo kind           |ddu-kind-tmux_repo-actions|
+Action-data for tmux_repo kind      |ddu-kind-tmux_repo-action-data|
+
+
+==============================================================================
+                                                 *ddu-source-tmux-introdution*
+Introduction ~
+
+ddu.vim source collects tmux stuffs.
+
+
+==============================================================================
+                                                     *ddu-source-tmux-install*
+Install ~
+
+It depends on "tmux", "|ddu|.vim" and "|denops.vim|".
+
+https://github.com/Shougo/ddu.vim
+https://github.com/vim-denops/denops.vim
+
+
+==============================================================================
+                                                    *ddu-source-tmux-examples*
+Examples ~
+
+>
+    " Use tmux session source.
+    call ddu#start({
+        \ 'sources': [{ 'name': 'tmux_session }],
+        \ 'kindOptions': { 'tmux_session': { 'defaultAction': 'switch' } }
+        \ })
+<
+
+
+==============================================================================
+                                                     *ddu-source-tmux-sources*
+Sources ~
+
+tmux_session
+    A source to collect your tmux sessions.
+    It generates items for a kind "tmux_session".
+    A handler for the kind "tmux_session" is included in this plugin; see
+    |ddu-kind-tmux_session|.
+
+
+tmux_pane
+    A source to collect your tmux panes.
+    It generates items for a kind "tmux_pane".
+    A handler for the kind "tmux_pane" is included in this plugin; see
+    |ddu-kind-tmux_pane|.
+
+
+==============================================================================
+                       *ddu-kind-tmux_session* *ddu-kind-tmux_session-actions*
+Actions of tmux_session kind ~
+
+                                       *ddu-source-tmux_session-action-switch*
+
+switch
+    Switch to the target session
+
+                                         *ddu-source-tmux_session-action-kill*
+kill
+    Kill the session.
+
+
+==============================================================================
+                                           *ddu-kind-tmux_session-action-data*
+Action-data for tmux_session kind ~
+
+Each item holds action data like below.
+
+    sessionId (string)
+        An identifier of the session.
+
+    current      (boolean)
+    windows      (number)
+    createdAt    (string)
+    attached     (boolean|null)
+
+
+==============================================================================
+                             *ddu-kind-tmux_pane* *ddu-kind-tmux_pane-actions*
+Actions of tmux_pane kind ~
+
+                                          *ddu-source-tmux_pane-action-select*
+
+select
+    Select the target pane
+
+                                         *ddu-source-tmux_pane-action-kill*
+kill
+    Kill the pane.
+
+
+==============================================================================
+                                              *ddu-kind-tmux_pane-action-data*
+Action-data for tmux_pane kind ~
+
+Each item holds action data like below.
+
+    paneNr (string)
+        An index number of the pane.
+    paneId (string)
+        An identifier of the pane.
+    width          (number)
+    height         (number)
+    historyCount   (number)
+    historyLimit   (number)
+    bytes          (number)
+    active         (boolean)
+
+
+==============================================================================
+" vim:tw=78:nosi:sts=4:ts=4:sw=4:et:ft=help:norl:
